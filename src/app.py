@@ -3,8 +3,8 @@ import joblib
 import numpy as np
 
 # Load the saved model and scaler
-model = joblib.load('heart_model.pkl')
-scaler = joblib.load('scaler.pkl')
+model = joblib.load('../models/heart_model.pkl')
+scaler = joblib.load('../models/scaler.pkl')
 
 st.set_page_config(page_title="Heart Disease Prediction", layout="centered")
 st.title("Heart Disease Diagnostic Tool")
