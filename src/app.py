@@ -3,6 +3,7 @@ import joblib
 import numpy as np
 
 # Load the saved model and scaler
+# Ensure these files are in your 'models' folder on GitHub
 model = joblib.load('models/heart_model.pkl')
 scaler = joblib.load('models/scaler.pkl')
 
@@ -47,13 +48,14 @@ if st.button("Predict Heart Health Status"):
     # Prediction
     prediction = model.predict(scaled_features)
     
-    # --- DEBUGGING LINE ---
-    # This will show you the exact number the model is choosing. 
-    st.info(f"Debug Info: The model classified this as Category {prediction[0]}")
+    # BASED ON OUR TEST: 
+    # Category 0 = Heart Disease (High Risk)
+    # Category 1 = Healthy (Low Risk)
     
-    # If Category 0 is actually the "Sick" group in your dataset, 
-    # we will just swap these messages.
-    if prediction[0] == 1:
+    if prediction[0] == 0:
         st.error("HIGH RISK: The model predicts a high probability of heart disease.")
     else:
         st.success("LOW RISK: The model predicts a low probability of heart disease.")
+
+    # (Optional) Remove this once you are sure everything is perfect
+    st.caption(f"Technical Output: Classified as Category {prediction[0]}")
